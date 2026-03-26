@@ -1,0 +1,56 @@
+{
+  "scenario_id": "async-human-approval.demo.v1",
+  "title": "Async human approval for AI agents - with reminders and escalation",
+  "description": "AI agent analyzes data, then pauses for human approval. Human responds hours later. AXME sends reminders and escalates if no response.",
+
+  "agents": [
+    {
+      "role": "data_analyst",
+      "address": "data-analyst-demo",
+      "display_name": "Data Analyst Agent",
+      "delivery_mode": "stream",
+      "create_if_missing": true
+    }
+  ],
+
+  "humans": [
+    {
+      "role": "data_owner",
+      "display_name": "Data Owner"
+    }
+  ],
+
+  "workflow": {
+    "steps": [
+      {
+        "step_id": "analyze_data",
+        "tool_id": "tool.agent.task.v1",
+        "assigned_to": "data_analyst",
+        "step_deadline_seconds": 120
+      },
+      {
+        "step_id": "owner_approval",
+        "tool_id": "tool.approval.human_signoff",
+        "assigned_to": "data_owner",
+        "requires_approval": true,
+        "step_deadline_seconds": 28800,
+        "remind_after_seconds": 300,
+        "human_task": {
+          "title": "Data export approval - PII detected",
+          "description": "Agent found PII in the export. Review findings and approve or reject the data export."
+        }
+      }
+    ]
+  },
+
+  "intent": {
+    "type": "intent.data.export_approval.v1",
+    "payload": {
+      "dataset": "customers_q1_2026",
+      "destination": "analytics-warehouse",
+      "row_count": 145000,
+      "requested_by": "analytics-pipeline"
+    },
+    "max_delivery_attempts": 3
+  }
+}
