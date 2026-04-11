@@ -5,7 +5,7 @@ Stop losing hours to blocked agents. AXME adds async human approvals with remind
 Your AI agent asks a question. The human is at lunch. Other solutions: agent blocks forever. AXME: agent waits patiently. Reminder in 5 min. Escalation in 30 min. Human answers from phone 2 hours later. Agent continues automatically.
 
 > **Alpha** - Built with [AXME](https://github.com/AxmeAI/axme) (AXP Intent Protocol).
-> [cloud.axme.ai](https://cloud.axme.ai) - [hello@axme.ai](mailto:hello@axme.ai)
+> [cloud.axme.ai](https://cloud.axme.ai) - [contact@axme.ai](mailto:contact@axme.ai)
 
 ---
 
